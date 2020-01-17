@@ -2,6 +2,10 @@ class PostsController < ApplicationController
   def new
   end
   
+  def create
+    redirect_to posts_index_url
+  end
+  
   def index
     @posts = Post.all
   end
