@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+  def new
+    @user = User.new
+  end
+  
   def index
     @users = User.all
   end
@@ -9,8 +13,12 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(name: params[:name], email: params[:email])
-    @user.save
-    redirect_to user_url @user
+    if @user.save
+      flash[:notice] = "ユーザーを登録しました。"
+      redirect_to user_url @user
+    else
+      render :new
+    end
   end
   
 end
