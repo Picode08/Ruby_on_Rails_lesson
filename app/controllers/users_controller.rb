@@ -14,8 +14,10 @@ class UsersController < ApplicationController
   def create
     @user = User.new(name: params[:name], 
                     email: params[:email],
-                    image: "default.png")
+                    image: "default.png",
+                    password: params[:password])
     if @user.save
+      session[:user_id] = @user.id
       flash[:notice] = "ユーザーを登録しました。"
       redirect_to user_url @user
     else
