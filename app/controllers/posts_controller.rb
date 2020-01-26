@@ -23,7 +23,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @user = User.find(@post.user_id)
+    @user = @post.user
   end
   
   def edit
